@@ -1,5 +1,81 @@
-<iframe
-    src="https://gumman.one/twitch_chat_simulator"
-    style="width:100%; height:100%; border:0; background:transparent;"
-    allowtransparency="true"
-></iframe>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+    body {
+        margin: 0;
+        background: transparent;
+        font-family: Arial, sans-serif;
+        color: white;
+    }
+
+    #chat {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        padding: 10px;
+        background: transparent;
+    }
+
+    .msg {
+        background: rgba(0, 0, 0, 0.3);
+        padding: 6px 10px;
+        border-radius: 6px;
+        font-size: 16px;
+    }
+
+    .name {
+        font-weight: bold;
+        color: #a970ff; /* roxo da twitch */
+        margin-right: 6px;
+    }
+</style>
+
+</head>
+<body>
+
+<div id="chat"></div>
+
+<script>
+
+// Nomes aleatórios (pode editar)
+const names = ["RatoLoko", "BRNzin", "MadrugaBot", "PivetePlay", "SkateGhost", "Arteiro", "WildStyle"];
+
+// Mensagens aleatórias (pode editar)
+const msgs = [
+    "salve chat",
+    "que isso kkkk",
+    "brabo demais",
+    "eita cumpadi!",
+    "isso tá rocheda",
+    "manda mais",
+    "que edição doida viu"
+];
+
+// Gera mensagem
+function addMessage() {
+    const chat = document.getElementById("chat");
+
+    const name = names[Math.floor(Math.random() * names.length)];
+    const message = msgs[Math.floor(Math.random() * msgs.length)];
+
+    const el = document.createElement("div");
+    el.className = "msg";
+    el.innerHTML = `<span class="name">${name}:</span> ${message}`;
+
+    chat.appendChild(el);
+
+    // auto scroll
+    chat.scrollTop = chat.scrollHeight;
+}
+
+// A cada 2s cria uma mensagem fake
+setInterval(addMessage, 2000);
+
+</script>
+
+</body>
+</html>
