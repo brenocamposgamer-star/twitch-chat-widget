@@ -21,7 +21,7 @@
     }
 
     .msg {
-        background: rgba(0, 0, 0, 0.3);
+        background: rgba(0, 0, 0, 0.30);
         padding: 6px 10px;
         border-radius: 6px;
         font-size: 16px;
@@ -29,7 +29,6 @@
 
     .name {
         font-weight: bold;
-        color: #a970ff; /* roxo da twitch */
         margin-right: 6px;
     }
 </style>
@@ -41,39 +40,69 @@
 
 <script>
 
-// Nomes aleatórios (pode editar)
-const names = ["RatoLoko", "dddzin", "MadrugaBot", "PivetePlay", "SkateGhost", "Arteiro", "WildStyle"];
-
-// Mensagens aleatórias (pode editar)
-const msgs = [
-    "salve chat",
-    "que isso kkkk",
-    "brabo demais",
-    "eita cumpadi!",
-    "isso tá rocheda",
-    "manda mais",
-    "que edição doida viu"
+// Usuários (expanded 40+ names)
+const names = [
+    "ZangadoXD", "LuaCraft", "Twitchinho", "FalcaoBranco", "NeoShadow",
+    "PixelVoador", "KuroKami", "RastaPro", "TioZy", "MikaZero",
+    "ClutchMaster", "GuriDoGame", "SombraFake", "LimaoGelado", "DraxFire",
+    "VHS_Seculo", "GhostinhoTV", "JubileuTreme", "OxHorn", "SushiKiller",
+    "HelenaArc", "ZetaBlue", "GamerCansado", "TerrorNoMapa", "NukeBoy",
+    "FuriaAzul", "LipeRx", "KabutoCego", "NinoPixel", "GuruNerd",
+    "Quasar", "DropGod", "PikenoByte", "CyberLobo", "MakiSama",
+    "VortexBR", "CanelaQuente", "ZeroLagTV", "SapoProMax", "AstralCore"
 ];
 
-// Gera mensagem
+// Mensagens (real chat vibes — 50+)
+const msgs = [
+    "salve", "boa noite chat", "kkkkkkkk", "mds o que foi isso?",
+    "brabo demais", "carai ficou bonito", "tô curtindo o rolê",
+    "alguém clipa isso aí", "só observo", "é hoje hein",
+    "nem fudendo kkkk", "eita preula", "ta fluindo demais",
+    "isso tá muito rocheda", "investe mais nisso ae",
+    "que isso cumpadi", "na moral ficou massa",
+    "quero ver mais desse trampo ai", "que vibe boa hoje",
+    "mano kkkk do nada", "to rachando aqui", "faz mais rápido",
+    "como tu fez isso?", "insano", "papo reto tá lindo",
+    "tá lisinho demais", "tô gostando viu", "chat tá on fogo",
+    "voltei! perdi algo?", "alguém explica?", "que edição gostosa",
+    "bora bora bora", "spam do brabo", "que timbre bom",
+    "parece fake isso", "to hipnotizado", "muito estiloso",
+    "isso precisa de mais view", "na moral muito foda",
+    "good vibes demais", "pqp ficou do cão", "que arte doida",
+    "caprichou hein", "mano tá perfeito", "manda mais logo",
+    "isso merece viralizar", "que trampo limpo", "isso sim é talento"
+];
+
+// Cores estilo Twitch
+const twitchColors = [
+    "#FF0000", "#0000FF", "#008000", "#B22222", "#FF7F50", "#9ACD32",
+    "#FF4500", "#2E8B57", "#DAA520", "#D2691E", "#5F9EA0", "#1E90FF",
+    "#FF69B4", "#8A2BE2", "#00FF7F"
+];
+
+function getRandomColor() {
+    return twitchColors[Math.floor(Math.random() * twitchColors.length)];
+}
+
+// Cria mensagens
 function addMessage() {
     const chat = document.getElementById("chat");
 
     const name = names[Math.floor(Math.random() * names.length)];
     const message = msgs[Math.floor(Math.random() * msgs.length)];
+    const color = getRandomColor();
 
     const el = document.createElement("div");
     el.className = "msg";
-    el.innerHTML = `<span class="name">${name}:</span> ${message}`;
+    el.innerHTML = `<span class="name" style="color:${color}">${name}:</span> ${message}`;
 
     chat.appendChild(el);
 
-    // auto scroll
     chat.scrollTop = chat.scrollHeight;
 }
 
-// A cada 2s cria uma mensagem fake
-setInterval(addMessage, 2000);
+// Intervalo de 1.5–3.5 segundos (mais natural)
+setInterval(addMessage, Math.floor(Math.random() * 2000) + 1500);
 
 </script>
 
